@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Flood Risk & Safe Routes</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://unpkg.com/@turf/turf@6.5.0/turf.min.js" defer></script>
+</head>
+<body>
+    
+
+  <!-- Advice Panel -->
+  <div class="panel">
+    <div id="advice" class="row muted">Loading…</div>
+    <div id="updated" class="row muted"></div>
+  </div>
+  <h2> Flood Risk Map </h2>
+  <div class="map-container">
+    
+        <div id="map"></div>
+  </div>
+
+  <div class="eta-box">
+    <div class="row"><strong>Route ETA & Distance</strong></div>
+    <div id="etaSummary" class="row muted">Tap a safe zone and press “Safe Route”.</div>
+  </div>
+  <!-- Legend -->
+  <div class="legend"></div>
+
+  <!-- NEW: Emergency Escape button -->
+  <button id="escapeBtn" class="fab">Emergency Escape</button>
+
+  <script defer src="map.js"></script>
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAupowXVdjw9VQESNxsqBeWskKjXvfeTZE&libraries=maps&callback=initMap"
+    defer>
+  </script>
+  
+  
+</body>
+</html>

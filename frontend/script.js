@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     // Figure out which page we're on based on <body class="xxx-page">
-    const bodyClass = document.body.classList[0]; 
+    const bodyClass = document.body.classList[0];
     const activePage = bodyClass ? bodyClass.replace("-page", "") : "";
 
     // Load the menu and highlight active item
