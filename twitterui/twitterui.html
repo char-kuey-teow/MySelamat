@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MySelamat Feed</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Custom Styles -->
+  <style>
+    body {
+      background-color: #f5f8fa;
+      font-family: "Segoe UI", Roboto, sans-serif;
+    }
+    .navbar {
+      background-color: white;
+      border-bottom: 1px solid #e6ecf0;
+    }
+    .navbar-brand {
+      font-size: 22px;
+      font-weight: bold;
+      color: #1DA1F2 !important;
+    }
+    .tweet-box {
+      background-color: white;
+      border-bottom: 1px solid #e6ecf0;
+      padding: 10px;
+      display: flex;
+      align-items: flex-start;
+    }
+    .tweet-box img {
+      border-radius: 50%;
+      width: 48px;
+      height: 48px;
+      margin-right: 10px;
+    }
+    .tweet-box textarea {
+      flex-grow: 1;
+      border: none;
+      resize: none;
+      font-size: 15px;
+      outline: none;
+    }
+    .tweet-btn {
+      background-color: #1DA1F2;
+      border: none;
+      color: white;
+      border-radius: 25px;
+      padding: 6px 15px;
+      font-weight: bold;
+    }
+    .tweet-card {
+      background-color: white;
+      border-bottom: 1px solid #e6ecf0;
+      padding: 10px;
+      display: flex;
+    }
+    .tweet-card img.profile {
+      border-radius: 50%;
+      width: 48px;
+      height: 48px;
+      margin-right: 10px;
+    }
+    .tweet-content {
+      flex-grow: 1;
+    }
+    .tweet-username {
+      font-weight: bold;
+    }
+    .tweet-handle {
+      color: gray;
+      font-size: 14px;
+      margin-left: 5px;
+    }
+    .tweet-text {
+      margin-top: 5px;
+      font-size: 15px;
+    }
+    .tweet-image {
+      margin-top: 8px;
+      width: 100%;
+      border-radius: 0; /* keep it rectangular */
+    }
+    .tweet-actions {
+      margin-top: 8px;
+      display: flex;
+      justify-content: space-between;
+      max-width: 250px;
+      color: gray;
+      font-size: 14px;
+    }
+    .tweet-actions span:hover {
+      color: #1DA1F2;
+      cursor: pointer;
+    }
+    .bottom-nav {
+      background-color: white;
+      border-top: 1px solid #e6ecf0;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+      padding: 8px 0;
+    }
+    .bottom-nav a {
+      color: gray;
+      font-size: 22px;
+      text-decoration: none;
+    }
+    .bottom-nav a:hover {
+      color: #1DA1F2;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navbar -->
+  <nav class="navbar sticky-top">
+    <div class="container">
+      <a class="navbar-brand mx-auto" href="#">Twitter</a>
+    </div>
+  </nav>
+
+<!-- Tweet Composer -->
+<div class="tweet-box">
+  <img src="https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png" alt="User">
+  <div class="flex-grow-1">
+    <textarea id="tweetText" placeholder="What's happening?" rows="2"></textarea>
+    <input type="text" id="tweetLocation" placeholder="Enter location" class="form-control mt-2">
+    <input type="file" id="tweetImage" accept="image/*" class="form-control mt-2">
+    <div class="d-flex justify-content-end mt-2">
+      <button class="tweet-btn" onclick="postTweet()">Tweet</button>
+    </div>
+  </div>
+</div>
+
+<script>
+function formatDateTime(date) {
+  const options = { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute:'2-digit', hour12: false };
+  return date.toLocaleString('en-US', options);
+}
+
+async function postTweet() {
+  const text = document.getElementById("tweetText").value;
+  const location = document.getElementById("tweetLocation").value;
+  const imageInput = document.getElementById("tweetImage");
+  const feed = document.getElementById("feed");
+
+  if (!text && !imageInput.files.length) {
+    alert("Please enter text or upload an image!");
+    return;
+  }
+
+  let imgURL = "";
+  if (imageInput.files.length > 0) {
+    imgURL = URL.createObjectURL(imageInput.files[0]); // preview only
+  }
+
+  const now = new Date();
+  const timeText = formatDateTime(now);
+
+  const tweetData = {
+    user: "User123",
+    text: text,
+    location: location,
+    time: now.toISOString(),
+    image: imgURL ? "uploaded-image-placeholder.jpg" : null // backend will replace if storing images
+  };
+
+  // ====== SEND TO BACKEND ======
+  try {
+    const response = await fetch("http://127.0.0.1:5000/post_tweet", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(tweetData),
+    });
+
+    const result = await response.json();
+    console.log("Uploaded:", result);
+  } catch (error) {
+    console.error("Error uploading to server:", error);
+  }
+
+  // ====== Update frontend immediately ======
+  const tweetCard = document.createElement("div");
+  tweetCard.classList.add("tweet-card");
+  tweetCard.innerHTML = `
+    <img src="https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png" alt="User" class="profile">
+    <div class="tweet-content">
+      <div>
+        <span class="tweet-username">User123</span>
+        <span class="tweet-handle">@user123 · ${timeText}</span>
+      </div>
+      <div class="tweet-location" style="color: gray; font-size: 14px;">${location ? `📍 ${location}` : ""}</div>
+      <div class="tweet-text">${text}</div>
+      ${imgURL ? `<img src="${imgURL}" class="tweet-image">` : ""}
+      <div class="tweet-actions">
+        <span>💬</span>
+        <span>🔁</span>
+        <span>❤️</span>
+        <span>📤</span>
+      </div>
+    </div>
+  `;
+  feed.prepend(tweetCard);
+
+  // Clear inputs
+  document.getElementById("tweetText").value = "";
+  document.getElementById("tweetLocation").value = "";
+  document.getElementById("tweetImage").value = "";
+}
+</script>
+
+
+<!-- Sample Feed -->
+<div id="feed">
+  <div class="tweet-card">
+    <img class="profile" src="https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png" alt="User">
+    <div class="tweet-content">
+      <div>
+        <span class="tweet-username">User123</span>
+        <span class="tweet-handle">@user123 · Thu, 21 Sep 2025, 09:30</span>
+      </div>
+      <div class="tweet-location">📍 Kampung Pemberian, Kota Bharu, Kelantan</div>
+      <div class="tweet-text">Main road cut off by floodwaters. More than 400 villagers affected.</div>
+      <img class="tweet-image" src="https://cdn4.premiumread.com/?url=https://malaymail.com/malaymail/uploads/images/2023/12/27/174538.JPG&w=1000&q=100&f=jpg&t=6" alt="Flood Image">
+      <div class="tweet-actions">
+        <span>💬 2</span>
+        <span>🔁 5</span>
+        <span>❤️ 12</span>
+        <span>📤</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="tweet-card">
+    <img class="profile" src="https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png" alt="User">
+    <div class="tweet-content">
+      <div>
+        <span class="tweet-username">Aiman</span>
+        <span class="tweet-handle">@aiman89 · Thu, 21 Sep 2025, 09:42</span>
+      </div>
+      <div class="tweet-location">📍 Kota Bharu, Kelantan</div>
+      <div class="tweet-text">Flood situation worsens, rescue teams monitoring affected zones.</div>
+      <img class="tweet-image" src="https://web14.bernama.com/storage/photos/4b997221d4d8dd6954c65f3df43c40f567727167aa04a" alt="Flood Image">
+      <div class="tweet-actions">
+        <span>💬 3</span>
+        <span>🔁 7</span>
+        <span>❤️ 25</span>
+        <span>📤</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="tweet-card">
+    <img class="profile" src="https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png" alt="User">
+    <div class="tweet-content">
+      <div>
+        <span class="tweet-username">Siti</span>
+        <span class="tweet-handle">@siti_melaka · Thu, 21 Sep 2025, 09:50</span>
+      </div>
+      <div class="tweet-location">📍 Taman Perbandaran Tengku Anis</div>
+      <div class="tweet-text">Water already entered some houses 😢 stay safe everyone!</div>
+      <img class="tweet-image" src="https://www.malaymail.com/malaymail/uploads/images/2025/01/03/253291.JPG" alt="Flood Image">
+      <div class="tweet-actions">
+        <span>💬 6</span>
+        <span>🔁 11</span>
+        <span>❤️ 40</span>
+        <span>📤</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+  
+  <!-- Bottom Navigation -->
+  <div class="bottom-nav">
+    <a href="#">🏠</a>
+    <a href="#">🔍</a>
+    <a href="#">🔔</a>
+    <a href="#">✉️</a>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
