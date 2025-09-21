@@ -1,0 +1,611 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Public Sans", Arial, sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+.app-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header Styles */
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    background: white;
+    border-bottom: 1px solid #e9ecef;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.app-header h1 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #1a1a1a;
+}
+
+.menu-btn,
+.back-btn,
+.close-menu {
+    background: none;
+    border: none;
+    font-size: 18px;
+    color: #666;
+    padding: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.menu-btn:hover,
+.back-btn:hover,
+.close-menu:hover {
+    background-color: #f1f3f4;
+}
+
+.sos-header {
+    padding: 12px 20px;
+}
+
+/* Main Content */
+.main-content {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    max-width: 100%;
+}
+
+/* Cards and Sections */
+.insights-card,
+.alert-card,
+.news-card {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.insights-card {
+    border-left: 4px solid #ff6b35;
+}
+
+.insights-card h2 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: #1a1a1a;
+}
+
+.insights-text {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 16px;
+    line-height: 1.5;
+}
+
+.ask-anything {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.ask-input {
+    flex: 1;
+    padding: 12px 16px;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+}
+
+.ask-input:focus {
+    border-color: #ff6b35;
+}
+
+.ask-btn {
+    padding: 12px 16px;
+    background: #ff6b35;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.2s;
+}
+
+.ask-btn:hover {
+    background: #e55a2b;
+}
+
+/* Alerts Section */
+.alerts-section h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: #1a1a1a;
+}
+
+.alert-card {
+    border-left: 4px solid #ff4757;
+    background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+}
+
+.alert-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+}
+
+.alert-icon {
+    font-size: 20px;
+}
+
+.high-risk .alert-header h4 {
+    color: #ff4757;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.alert-message {
+    color: #666;
+    font-size: 14px;
+    margin: 0;
+}
+
+/* Flood Prediction */
+.flood-prediction h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: #1a1a1a;
+}
+
+.map-container {
+    position: relative;
+    height: 200px;
+    border-radius: 8px;
+    overflow: hidden;
+    background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
+}
+
+.flood-map {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background: linear-gradient(45deg, #4fc3f7 0%, #81c784 50%, #ffcc02 100%);
+    border-radius: 8px;
+}
+
+.map-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 12px;
+}
+
+.legend {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: #666;
+}
+
+.color-box {
+    width: 12px;
+    height: 12px;
+    border-radius: 2px;
+}
+
+.color-box.low {
+    background: #81c784;
+}
+
+.color-box.medium {
+    background: #ffcc02;
+}
+
+.color-box.high {
+    background: #ff4757;
+}
+
+/* News Section */
+.news-section h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: #1a1a1a;
+}
+
+.news-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px;
+    border-left: 4px solid #2ed573;
+}
+
+.news-icon {
+    font-size: 24px;
+}
+
+.news-content h4 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: #1a1a1a;
+}
+
+.news-subtitle {
+    font-size: 14px;
+    color: #666;
+}
+
+/* Bottom Navigation */
+.bottom-nav {
+    display: flex;
+    background: white;
+    border-top: 1px solid #e9ecef;
+    padding: 8px 0;
+    position: sticky;
+    bottom: 0;
+    z-index: 100;
+}
+
+.nav-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 8px 12px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: #666;
+    font-size: 12px;
+}
+
+.nav-item i {
+    font-size: 20px;
+}
+
+.nav-item.active,
+.nav-item:hover {
+    color: #ff6b35;
+}
+
+.nav-item.active {
+    background: rgba(255, 107, 53, 0.1);
+    border-radius: 8px;
+    margin: 0 4px;
+}
+
+/* SOS Page Styles */
+.sos-page {
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    color: white;
+}
+
+.sos-header h1 {
+    color: white;
+}
+
+.sos-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.emergency-alert h2 {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: white;
+}
+
+.alert-instruction {
+    font-size: 16px;
+    color: #e0e0e0;
+    margin-bottom: 40px;
+    max-width: 300px;
+    line-height: 1.4;
+}
+
+.sos-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+.sos-circle {
+    position: relative;
+    width: 160px;
+    height: 160px;
+    background: linear-gradient(135deg, #ff4757 0%, #ff6b35 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 32px rgba(255, 71, 87, 0.4);
+}
+
+.sos-circle:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 40px rgba(255, 71, 87, 0.6);
+}
+
+.sos-circle:active {
+    transform: scale(0.95);
+}
+
+.sos-text {
+    font-size: 32px;
+    font-weight: 700;
+    color: white;
+    z-index: 2;
+    position: relative;
+}
+
+.progress-ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 140px;
+    height: 140px;
+}
+
+.progress-svg {
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+}
+
+.progress-circle-bg {
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.2);
+    stroke-width: 6;
+}
+
+.progress-circle {
+    fill: none;
+    stroke: white;
+    stroke-width: 6;
+    stroke-linecap: round;
+    stroke-dasharray: 377;
+    stroke-dashoffset: 377;
+    transition: stroke-dashoffset 0.3s ease;
+}
+
+.sos-options {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+    max-width: 300px;
+}
+
+.sos-option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    color: white;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.2s;
+    backdrop-filter: blur(10px);
+}
+
+.sos-option:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.sos-option i {
+    font-size: 18px;
+    width: 24px;
+}
+
+.sos-option span {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+/* Menu Overlay */
+.menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: flex-end;
+}
+
+.menu-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.menu-content {
+    background: white;
+    width: 100%;
+    max-height: 80vh;
+    border-radius: 20px 20px 0 0;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+    overflow-y: auto;
+}
+
+.menu-overlay.active .menu-content {
+    transform: translateY(0);
+}
+
+.menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 24px;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.menu-header h3 {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.menu-list {
+    list-style: none;
+    padding: 0;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    padding: 16px 24px;
+    color: #333;
+    text-decoration: none;
+    border-bottom: 1px solid #f1f3f4;
+    transition: background-color 0.2s;
+}
+
+.menu-item:hover {
+    background-color: #f8f9fa;
+}
+
+.menu-item.logout {
+    color: #ff4757;
+    margin-top: 16px;
+    border-top: 1px solid #e9ecef;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    .main-content {
+        padding: 16px;
+    }
+
+    .app-header {
+        padding: 12px 16px;
+    }
+
+    .sos-circle {
+        width: 140px;
+        height: 140px;
+    }
+
+    .sos-text {
+        font-size: 28px;
+    }
+
+    .emergency-alert h2 {
+        font-size: 20px;
+    }
+
+    .alert-instruction {
+        font-size: 14px;
+    }
+}
+
+@media (min-width: 768px) {
+    .app-container {
+        max-width: 480px;
+        margin: 0 auto;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        border-radius: 20px;
+        overflow: hidden;
+        height: 100vh;
+    }
+
+    .menu-content {
+        width: 300px;
+        align-self: flex-end;
+        margin-right: 20px;
+        margin-bottom: 20px;
+        max-height: 500px;
+    }
+
+    .menu-overlay.active .menu-content {
+        transform: translateY(0);
+    }
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.insights-card,
+.alert-card,
+.news-card {
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* Loading Animation for SOS */
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 71, 87, 0.7);
+    }
+
+    70% {
+        box-shadow: 0 0 0 20px rgba(255, 71, 87, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 71, 87, 0);
+    }
+}
+
+.sos-circle.pressing {
+    animation: pulse 1.5s infinite;
+}

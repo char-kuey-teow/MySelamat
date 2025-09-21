@@ -1,0 +1,171 @@
+/* General body */
+body {
+    font-family: "Public Sans", Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    color: #222;
+}
+
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    border-bottom: 1px solid #ddd;
+    background: #fff;
+}
+
+header h1 {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.container {
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto;
+    background-color: #f9f9f9; /* Keep light theme */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Subtle shadow for app feel */
+    position: relative; /* For fixed elements like nav */
+}
+
+/* Alerts Section */
+.alerts {
+  background: #fff;
+  padding: 12px 16px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .15);
+  font-size: 14px;
+  line-height: 1.4;
+  max-width: 600px;
+  margin: 16px 20px;
+}
+
+.alerts h2 {
+  margin-bottom: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fe3939; 
+  margin-top: 2px;
+}
+
+.alerts-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.alert-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.alert-list li {
+    margin: 3px 0;
+    font-size: 14px;
+}
+
+.risk-category {
+  font-weight: bold;
+  color: #e74c3c; /* Strong red */
+}
+
+.flood-warning-title {
+  font-weight: 600;
+  color: #333;
+}
+
+.flood-desc {
+  color: #666;
+  font-size: 13px;
+}
+
+.alerts img {
+    width: 100px;
+    height: 60px;
+    margin-left: 15px;
+}
+
+/* Flood Prediction Section */
+.flood-prediction {
+    margin: 10px 0;
+    padding: 15px 20px;
+    background: #fff;
+    border-radius: 8px;
+}
+
+.flood-prediction h2 {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* News & Updates Section */
+.news-updates {
+    margin: 10px 0 70px;
+    /* leave space above bottom nav */
+    padding: 15px 20px;
+    background: #fff;
+    border-radius: 8px;
+}
+
+.news-updates h2 {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.news-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.news-item div {
+    display: flex;
+    flex-direction: column;
+}
+
+.news-item-title {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.news-item-desc {
+    font-size: 13px;
+    color: #555;
+}
+
+.news-item img {
+    width: 40px;
+    height: 40px;
+    margin-left: 15px;
+}
+
+/* report button */
+.submit-btn {
+    width: calc(100% - 40px);
+    max-width: 400px; 
+    padding: 15px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 30px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    margin-top: auto;
+    z-index: 500; 
+    bottom: 95px;
+    left: 50%;                
+    transform: translateX(-50%);
+    position: fixed; 
+}

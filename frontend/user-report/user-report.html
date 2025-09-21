@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MySelamat</title>
+    <link rel="stylesheet" href="../css/menu.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="user-report.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="top-bar">
+            <span class="close-btn">&times;</span>
+
+                <script>
+                document.querySelector(".close-btn").addEventListener("click", () => {
+                    window.location.href = "../home.html";
+                });
+                </script>
+
+            <span class="title">Report</span>
+            <span></span>
+        </div>
+
+        <div class="report-form">
+             <!-- Disaster type selector -->
+            <div class="form-section">
+                <h3>Disaster Type</h3>
+                <div class="disaster-options">
+                    <div class="disaster-btn" onclick="selectDisaster('flood')">Flood</div>
+                    <div class="disaster-btn" onclick="selectDisaster('earthquake')">Earthquake</div>
+                    <div class="disaster-btn" onclick="selectDisaster('landslide')">Landslide</div>
+                </div>
+            </div>
+
+            <!-- Water level (hidden by default) -->
+            <div class="form-section" id="water-level-section" style="display: none;">
+                <h3>Water level</h3>
+                <div class="level-options">
+                    <div class="level-btn low" onclick="selectLevel('low')">Low</div>
+                    <div class="level-btn medium" onclick="selectLevel('medium')">Medium</div>
+                    <div class="level-btn high" onclick="selectLevel('high')">High</div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h3>Flood location</h3>
+                <input type="text" class="location-input" placeholder="District, State (e.g., Shah Alam, Selangor)">
+            </div>
+            
+            <button class="submit-btn waze-style">Report</button>
+        </div>
+    </div>
+
+    <script>
+        function selectLevel(level) {
+            const buttons = document.querySelectorAll('.level-btn');
+            buttons.forEach(btn => btn.classList.remove('selected'));
+            document.querySelector(`.level-btn.${level}`).classList.add('selected');
+        }
+    </script>
+    <!-- Menu section -->
+    <div id="menu-container"></div>
+    <script src="script.js"></script>
+    <script>
+      fetch("../menu.html")
+        .then(res => res.text())
+        .then(html => {
+          document.getElementById("menu-container").innerHTML = html;
+
+          // Mark active nav item
+          const pageClass = document.body.classList[0]; // e.g. "home-page"
+          const activePage = pageClass.replace("-page", "");
+          document.querySelectorAll("#menu-container .nav-item").forEach(item => {
+            if (item.dataset.page === activePage) {
+              item.classList.add("active");
+            }
+          });
+        });
+    </script>
+    <script src="user-report.js"></script>
+</body>
+</html>

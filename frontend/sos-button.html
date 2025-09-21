@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOS Emergency</title>
+    <link rel="stylesheet" href="css/menu.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="css/sos-button.css">
+</head>
+
+<body class="sos-page">
+    <div class="container">
+        <div class="top-bar">
+            <i class="fas fa-arrow-left"></i>
+            <span>sos</span>
+        </div>
+
+        <div class="main-content">
+            <h1>Emergency Alert</h1>
+            <p>Press and hold for 3 seconds to send an alert with your live location</p>
+
+            <div class="sos-button-wrapper">
+                <div class="sos-button">
+                    SOS
+                </div>
+            </div>
+
+            <button class="action-button push-to-talk">
+                <i class="fas fa-microphone"></i> Push to Talk
+            </button>
+            <p class="small-text">Record a voice message</p>
+            <button class="action-button family-safety-check">
+                <i class="fas fa-users"></i> Family Safety Check
+            </button>
+        </div>
+
+        <div id="menu-container"></div>
+        <script src="script.js"></script>
+        <script>
+            fetch("menu.html")
+                .then(res => res.text())
+                .then(html => {
+                    document.getElementById("menu-container").innerHTML = html;
+
+                    // Mark active nav item
+                    const pageClass = document.body.classList[0]; // e.g. "home-page"
+                    const activePage = pageClass.replace("-page", "");
+                    document.querySelectorAll("#menu-container .nav-item").forEach(item => {
+                        if (item.dataset.page === activePage) {
+                            item.classList.add("active");
+                        }
+                    });
+                });
+        </script>
+
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MySelamat</title>
+  <link rel="stylesheet" href="css/menu.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="css/home.css">
+</head>
+
+<body class="home-page">
+  <div class="container">
+    <header>
+      <h1>MySelamat</h1>
+    </header>
+
+    <!-- Alert -->
+    <section class="alerts">
+      <h2>Alerts</h2>
+      <div class="alerts-content">
+        <ul class="alert-list">
+          <li class="risk-category">High Risk Area!</li>
+          <li class="flood-warning-title">Riverine Flood Warning.</li>
+          <li class="flood-desc">Flooding expected in 2 hours.</li>
+        </ul>
+        <img src="/img/warning-icon.png" alt="warning">
+      </div>
+    </section>
+
+
+    <!-- Flood prediction -->
+    <section class="flood-prediction">
+      <h2>Flood Prediction</h2>
+      <!-- map api -->
+    </section>
+
+    <button class="submit-btn waze-style">Report</button>
+    <script>
+      document.querySelector('.submit-btn').addEventListener('click', function () {
+        window.location.href = 'user-report/user-report.html';
+      });
+    </script>
+    <!-- Menu section -->
+    <div id="menu-container"></div>
+    <script src="script.js"></script>
+    <script>
+      fetch("menu.html")
+        .then(res => res.text())
+        .then(html => {
+          document.getElementById("menu-container").innerHTML = html;
+
+          // Mark active nav item
+          const pageClass = document.body.classList[0]; // e.g. "home-page"
+          const activePage = pageClass.replace("-page", "");
+          document.querySelectorAll("#menu-container .nav-item").forEach(item => {
+            if (item.dataset.page === activePage) {
+              item.classList.add("active");
+            }
+          });
+        });
+    </script>
+  </div>
+</body>
+
+</html>
