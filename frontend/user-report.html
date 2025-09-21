@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MySelamat</title>
-    <link rel="stylesheet" href="../css/menu.css">
+    <link rel="stylesheet" href="css/menu.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="user-report.css">
+    <link rel="stylesheet" href="css/user-report.css">
 </head>
 
 <body>
@@ -17,7 +17,7 @@
 
                 <script>
                 document.querySelector(".close-btn").addEventListener("click", () => {
-                    window.location.href = "../home.html";
+                    window.location.href = "home.html";
                 });
                 </script>
 
@@ -66,7 +66,7 @@
     <div id="menu-container"></div>
     <script src="script.js"></script>
     <script>
-      fetch("../menu.html")
+      fetch("menu.html")
         .then(res => res.text())
         .then(html => {
           document.getElementById("menu-container").innerHTML = html;
