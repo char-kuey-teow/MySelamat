@@ -1,0 +1,10 @@
+{
+  "type":"FeatureCollection",
+  "features":[
+    {
+      "type":"Feature",
+      "properties":{"type":"flooded_road"},
+      "geometry":{"type":"Polygon","coordinates":[[[101.67,3.12],[101.68,3.12],[101.68,3.13],[101.67,3.13],[101.67,3.12]]]}
+    }
+  ]
+}

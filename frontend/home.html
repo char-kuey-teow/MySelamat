@@ -16,32 +16,41 @@
       <h1>MySelamat</h1>
     </header>
 
-    <!-- Alert -->
-    <section class="alerts">
-      <h2>Alerts</h2>
-      <div class="alerts-content">
-        <ul class="alert-list">
-          <li class="risk-category">High Risk Area!</li>
-          <li class="flood-warning-title">Riverine Flood Warning.</li>
-          <li class="flood-desc">Flooding expected in 2 hours.</li>
-        </ul>
-        <img src="/img/warning-icon.png" alt="warning">
-      </div>
-    </section>
-
-
-    <!-- Flood prediction -->
+    <!-- Flood Risk & Safe Routes Map -->
     <section class="flood-prediction">
-      <h2>Flood Prediction</h2>
-      <!-- map api -->
+      <h2>Flood Risk Map</h2>
+
+      <!-- Advice Panel -->
+      <div class="panel">
+        <div id="advice" class="row muted">Loading…</div>
+        <div id="updated" class="row muted"></div>
+      </div>
+
+      <div class="map-container">
+        <div id="map"></div>
+      </div>
+
+      <div class="info-bar">
+        <!-- Legend -->
+        <div class="legend"></div>
+
+        <!-- ETA Box -->
+        <div class="eta-box">
+          <div class="eta-title">Route ETA & Distance</div>
+          <div class="eta-desc-row">Tap a safe zone and press “Safe Route”.</div>
+        </div>
+      </div>
+
+
+      <!-- Emergency Escape button -->
+      <button class="submit-btn fab">Emergency Escape</button>
+      <script>
+        document.querySelector('.submit-btn').addEventListener('click', function () {
+          window.location.href = 'user-report/user-report.html';
+        });
+      </script>
     </section>
 
-    <button class="submit-btn waze-style">Report</button>
-    <script>
-      document.querySelector('.submit-btn').addEventListener('click', function () {
-        window.location.href = 'user-report/user-report.html';
-      });
-    </script>
     <!-- Menu section -->
     <div id="menu-container"></div>
     <script src="script.js"></script>
@@ -61,6 +70,11 @@
           });
         });
     </script>
+    <script defer src="map.js"></script>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAupowXVdjw9VQESNxsqBeWskKjXvfeTZE&libraries=maps&callback=initMap"
+      defer>
+      </script>
   </div>
 </body>
 

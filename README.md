@@ -15,30 +15,23 @@ MySelamat is an end-to-end disaster management and rescue coordination system de
 - **One situational map** shared by Fire, Police, and Medical teams.  
 - Role-based access but synchronized view for all agencies.  
 - Integrated feeds from **MET, social media, and user/third-party reports**.  
-- **Flood forecasting & predictive flood-risk mapping** (visualized in light/dark blue).  
+- **Flood forecasting & predictive flood-risk mapping**.  
 - **Statistical dashboard** for decision-makers.  
 
-### 🗺 Hyper-Local Risk Mapping  
-- Goes beyond vague, city-level alerts.  
-- Provides **street/district-level notifications** (e.g., *Kepong, Jalan Kepong*).  
+### 🗺 Hyper-Local Risk Mapping   
+- Provides **district-level notifications**.  
 - Identifies the **safest routes** for rescue teams.  
 
 ### 🚑 Smart Rescue Routing  
 - Calculates **fastest, hazard-aware paths** for rescue teams.  
 - Provides **safe evacuation routes** for citizens.  
-- Uses **Google Distance Matrix API + hazard overlays**.  
 
 ### 🆘 One-Tap SOS Reporting  
 - **SOS button activates only in verified disaster zones**.  
-- Sends automatically:  
-  - **Identity & profile**  
-  - **Geotagged location**  
-  - **Timestamp**  
 - Routes SOS packets to **nearest verified agency**.  
 - Agencies receive structured reports + quick context options (*Trapped in building*, *Medical emergency*, etc.).  
 - **Voice note option** for distressed users.  
 - **Continuous tracking** until safe.  
-- Feedback loop: *“Your SOS has been received by [Agency].”*  
 
 ### 👥 User / Third-Party Self-Reporting  
 - Waze-style **crowdsourced reporting**.  

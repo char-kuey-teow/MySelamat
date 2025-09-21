@@ -1,9 +1,8 @@
-html, body { 
-  height:100%; margin:0; padding:0;  }
+html, body { height:100%; margin:0; padding:0; font-family: system-ui, Arial, sans-serif; }
     #map { height:100%; width:100%; }
     .map-container {
       width: 100%;
-      max-width: 480px;   /* control max width */
+      max-width: 600px;   /* control max width */
       height: 400px;      /* map height */
       border: 2px solid #ddd;
       border-radius: 12px;
