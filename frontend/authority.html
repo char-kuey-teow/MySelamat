@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Authority – Route Optimizer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="css/authority.css" />
+</head>
+<body>
+  <div class="wrap">
+    <aside class="panel">
+      <h2>Authority – Route Optimizer</h2>
+
+      <div class="block">
+        <label class="lbl">Filter incidents</label>
+        <input id="filter" class="input" placeholder="Search by incident or address…"/>
+
+        <!-- NEW: SOS trigger lives "bottom-left" of the search block -->
+        <div class="row between" style="margin-top:8px;">
+          <button id="sosBtn" class="btn small" title="Send a demo SOS to the backend">🚨 SOS</button>
+        </div>
+        <div id="sosOut" class="small muted" style="margin-top:6px;"></div>
+      </div>
+
+      <div class="block">
+        <div class="row between">
+          <span class="lbl">Incidents</span>
+          <button id="reloadIncidents" class="btn small">Reload</button>
+        </div>
+        <div id="incidents" class="list"></div>
+      </div>
+
+      <div class="block">
+        <div class="row between">
+          <span class="lbl">Rescue Units</span>
+          <button id="reloadUnits" class="btn small">Reload</button>
+        </div>
+        <div id="units" class="list"></div>
+      </div>
+
+      <div id="routeInfo" class="info muted">Select an incident to compute route…</div>
+    </aside>
+
+    <main class="map-wrap">
+      <div id="map"></div>
+      <div id="legend" class="legend"></div>
+      <div id="toast" class="toast" style="display:none"></div>
+    </main>
+  </div>
+
+  <script src="authority.js" defer></script>
+  <!-- Replace YOUR_KEY; include geometry library for point-in-polygon utils -->
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAupowXVdjw9VQESNxsqBeWskKjXvfeTZE&libraries=geometry&callback=initMap"
+    async defer></script>
+</body>
+</html>
+
