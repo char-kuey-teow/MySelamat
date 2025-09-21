@@ -16,9 +16,12 @@
             <i class="fas fa-arrow-left"></i>
             <span>sos</span>
         </div>
+        <!-- Add just above </div> of .main-content -->
+        <p id="sos-status" class="small-text" style="color:#9be49b; display:none;"></p>
+        <p id="sos-error" class="small-text" style="color:#ffb3b3; display:none;"></p>
 
         <div class="main-content">
-            <h1>Emergency Alert</h1>
+            <h1>Emergency Request</h1>
             <p>Press and hold for 3 seconds to send an alert with your live location</p>
 
             <div class="sos-button-wrapper">
@@ -27,14 +30,29 @@
                 </div>
             </div>
 
-            <button class="action-button push-to-talk">
-                <i class="fas fa-microphone"></i> Push to Talk
-            </button>
-            <p class="small-text">Record a voice message</p>
-            <button class="action-button family-safety-check">
-                <i class="fas fa-users"></i> Family Safety Check
-            </button>
+
+            <div id="incident-options" style="display:none; margin-top:16px;">
+                <button class="action-button">
+                    <i class="fas fa-building"></i> Trapped in Building
+                </button>
+                <button class="action-button">
+                    <i class="fas fa-first-aid"></i> Medical Emergency
+                </button>
+                <button class="action-button">
+                    <i class="fas fa-water"></i> Flooded Area
+                </button>
+                <button class="action-button">
+                    <i class="fas fa-fire"></i> Fire / Explosion
+                </button>
+                <button class="action-button push-to-talk">
+                    <i class="fas fa-microphone"></i> Push to Talk
+                </button>
+                </div>
         </div>
+
+        <div id="sos-result" style="
+            
+            "></div>
 
         <div id="menu-container"></div>
         <script src="script.js"></script>
@@ -56,6 +74,12 @@
         </script>
 
     </div>
+    <script defer src="sos.js"></script>
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAupowXVdjw9VQESNxsqBeWskKjXvfeTZE&libraries=places&callback=onGoogleMapsReady"
+        async
+        defer
+        ></script>
 </body>
 
 </html>
