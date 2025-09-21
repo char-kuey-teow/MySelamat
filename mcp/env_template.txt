@@ -1,0 +1,28 @@
+# Environment Variables Template
+# Copy this file to .env and fill in your actual values
+
+# Twitter API Configuration
+TWITTER_BEARER_TOKEN=your_twitter_bearer_token_here
+TWITTER_API_KEY=your_twitter_api_key_here
+TWITTER_API_SECRET_KEY=your_twitter_api_secret_key_here
+TWITTER_ACCESS_TOKEN=your_twitter_access_token_here
+TWITTER_ACCESS_TOKEN_SECRET=your_twitter_access_token_secret_here
+
+# AWS Configuration
+AWS_ACCESS_KEY=your_aws_access_key_here
+AWS_SECRET_ACCESS_KEY=your_aws_secret_access_key_here
+
+# Knowledge Base Configuration
+WEATHER_LOCATION_KB_ID=your_weather_location_kb_id_here
+
+# Optional: Google Maps API (for routing features)
+GOOGLE_MAPS_API_KEY=your_google_maps_api_key_here
+
+# Optional: Email Configuration (for alerts)
+SMTP_SERVER=smtp.gmail.com
+SMTP_PORT=587
+EMAIL_USERNAME=your_email_here
+EMAIL_PASSWORD=your_email_password_here
+
+# Optional: Database Configuration
+DATABASE_URL=your_database_url_here

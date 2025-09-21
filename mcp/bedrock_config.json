@@ -1,0 +1,35 @@
+{
+    "bedrock_region": "ap-southeast-1",
+    "nova_model_params": {
+        "temperature": 0.0,
+        "maxTokens": 4096,
+        "topP": 0.9
+    },
+    "nova_canvas_params": {
+        "cfgScale": 8.0,
+        "quality": "standard",
+        "width": 1280,
+        "height": 720,
+        "numberOfImages": 1
+    },
+    "nova_reel_params": {
+        "durationSeconds": 6,
+        "fps": 24,
+        "dimension": "1280x720"
+    },
+    "kb_configs": {"vectorSearchConfiguration": {"numberOfResults": 5}},
+    "multimodal_llms": {
+        "N. Virginia": {
+            "Amazon Nova Lite": {
+                "model_arn": "arn:aws:bedrock:us-east-1::foundation-model/amazon.nova-lite-v1:0",
+                "model": "amazon.nova-lite-v1:0"
+            },
+            "Titan Text Embeddings V2": {
+                "model_arn": "arn:aws:bedrock:us-east-1::foundation-model/amazon.titan-embed-text-v2:0"
+            }
+        }
+    },
+    "regions": {
+        "N. Virginia": "us-east-1"
+    }
+}

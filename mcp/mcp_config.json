@@ -1,0 +1,142 @@
+{
+  "mcp_server": {
+    "name": "flood-alert-system",
+    "version": "1.0.0",
+    "description": "AI-Driven Natural Disaster Alert System MCP Server",
+    "capabilities": {
+      "tools": true,
+      "resources": false,
+      "prompts": false
+    }
+  },
+  "tools": {
+    "analyze_flood_post": {
+      "description": "Analyze social media posts for flood detection using MLLM",
+      "input_schema": {
+        "text_input": "string (required)",
+        "image_files": "array of strings (optional)",
+        "save_to_s3": "boolean (optional, default: false)",
+        "s3_bucket": "string (optional)"
+      }
+    },
+    "classify_location": {
+      "description": "Classify and validate Malaysian location information",
+      "input_schema": {
+        "location": "string (required)"
+      }
+    },
+    "search_twitter_flood_reports": {
+      "description": "Search Twitter for flood-related posts in specific areas",
+      "input_schema": {
+        "location": "string (required)",
+        "max_results": "integer (optional, default: 10)"
+      }
+    },
+    "get_weather_forecast": {
+      "description": "Get weather forecast for a specific location",
+      "input_schema": {
+        "location": "string (required)"
+      }
+    },
+    "get_flood_warning": {
+      "description": "Get official flood warning data from data.gov.my",
+      "input_schema": {
+        "location": "string (required)"
+      }
+    },
+    "get_alternative_routes": {
+      "description": "Get alternative routes using Google Maps API",
+      "input_schema": {
+        "origin": "string (required)",
+        "destination": "string (required)",
+        "avoid_areas": "array of strings (optional)"
+      }
+    },
+    "create_flood_report": {
+      "description": "Create consolidated flood report and store in database",
+      "input_schema": {
+        "flood_data": "object (required)",
+        "location_data": "object (required)",
+        "twitter_data": "object (optional)",
+        "weather_data": "object (optional)",
+        "flood_warning_data": "object (optional)"
+      }
+    },
+    "send_alert_notification": {
+      "description": "Send email alerts for flood warnings",
+      "input_schema": {
+        "report_id": "string (required)",
+        "recipients": "array of strings (required)",
+        "priority": "string (optional, default: medium)"
+      }
+    }
+  },
+  "workflow": {
+    "step_1": {
+      "name": "MLLM Gatekeeper",
+      "description": "Analyze social media post for flood detection",
+      "tool": "analyze_flood_post",
+      "output": "flood_detection_result"
+    },
+    "step_2": {
+      "name": "Location Classification",
+      "description": "Classify and validate location information",
+      "tool": "classify_location",
+      "depends_on": "step_1",
+      "output": "location_classification_result"
+    },
+    "step_3": {
+      "name": "Twitter Verification",
+      "description": "Search Twitter for additional flood reports",
+      "tool": "search_twitter_flood_reports",
+      "depends_on": "step_2",
+      "output": "twitter_verification_result"
+    },
+    "step_4": {
+      "name": "Weather Check",
+      "description": "Get current weather conditions",
+      "tool": "get_weather_forecast",
+      "depends_on": "step_2",
+      "output": "weather_conditions_result"
+    },
+    "step_5": {
+      "name": "Official Warnings",
+      "description": "Check official flood warnings",
+      "tool": "get_flood_warning",
+      "depends_on": "step_2",
+      "output": "official_warnings_result"
+    },
+    "step_6": {
+      "name": "Report Generation",
+      "description": "Create consolidated flood report",
+      "tool": "create_flood_report",
+      "depends_on": ["step_1", "step_2", "step_3", "step_4", "step_5"],
+      "output": "consolidated_report"
+    },
+    "step_7": {
+      "name": "Alert Distribution",
+      "description": "Send alerts to relevant parties",
+      "tool": "send_alert_notification",
+      "depends_on": "step_6",
+      "output": "alert_notification_result"
+    }
+  },
+  "api_endpoints": {
+    "twitter": "https://api.x.com/2/tweets/search/recent",
+    "weather": "https://api.data.gov.my/weather/forecast",
+    "flood_warnings": "https://api.data.gov.my/flood-warning",
+    "google_maps": "https://maps.googleapis.com/maps/api/directions/json"
+  },
+  "credibility_scoring": {
+    "mllm_analysis": 0.4,
+    "twitter_verification": 0.25,
+    "weather_confirmation": 0.25,
+    "location_confidence": 0.1
+  },
+  "severity_levels": {
+    "minor": "Low impact, localized flooding",
+    "moderate": "Significant impact, multiple areas affected",
+    "severe": "High impact, widespread flooding",
+    "critical": "Extreme impact, life-threatening conditions"
+  }
+}
